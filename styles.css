@@ -57,7 +57,7 @@ body {
     height: 250px;
     color: white;
     text-align: center;
-    font-size: 20px;
+    font-size: 15px;
     padding: 20px;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -65,7 +65,6 @@ body {
     margin-right: auto;
     display: block;
     font-family: 'Arial', sans-serif;
-    line-height: 1.5;
     /*add photos to the boxes and maybe make them bigger */
   }
 
