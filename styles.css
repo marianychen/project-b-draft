@@ -29,11 +29,10 @@ body {
 }
 
 #links{
-    font-size: x-large;
+    font-size: larger;
     font-family: 'Arial', sans-serif;
     color:white;
     text-align: right;
-    margin-top: -20px;
    
 
 }
