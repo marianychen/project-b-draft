@@ -1,6 +1,5 @@
 body {
     background-color: rgb(20, 19, 19);
-    margin: 0;
   }
 
 #title{
@@ -13,10 +12,7 @@ body {
   font-family: 'Arial', sans-serif;
   color:white;
   box-sizing: border-box;
-  padding: 15px;
-}
-#title h1 {
-    margin: 10; 
+  padding: 20px;
 }
 #banner{
     /* background-color: red;  */
@@ -55,18 +51,21 @@ body {
 .box {
     background-color: rgb(95, 57, 209);
     border-style: solid;
-    border-color: rgb(22, 6, 72);
-    border-width: 10px;
-    width: 80%;
-    height: 200px;
+    border-color: rgb(37, 14, 108);
+    border-width: 20px;
+    width: 50%;
+    height: 250px;
     color: white;
     text-align: center;
-    font-size: larger;
+    font-size: 20px;
     padding: 20px;
     margin-top: 50px;
     margin-bottom: 50px;
-    margin-left: 200px; 
-    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
     /*add photos to the boxes and maybe make them bigger */
   }
 
@@ -121,9 +120,9 @@ body {
 
   }
 
-  #p5container canvas{
-    border: solid rgb(75, 75, 75);
-    border-width: 5px;
+#p5container canvas{
+    border: solid white;
+    border-width: 10px;
     display: block;
     margin:auto;
 }
