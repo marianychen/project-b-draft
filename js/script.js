@@ -11,10 +11,11 @@ let humanImg;
 let forrestSound;
 
 // function preload() {
-//   rainSound = loadSound("../project-b-draft/js/asset/lightrain.wav");
-//   flowerImg = loadImage("../project-b-draft/js/asset/doodle.png");
-//   humanImg = loadImage("../project-b-draft/js/asset/hand.png");
-//   forrestSound = loadSound("../project-b-draft/js/asset/forrestsound.wav");
+//   soundFormats('wav');
+//   rainSound = loadSound("../asset/lightrain.wav");
+//   flowerImg = loadImage("../asset/doodle.png");
+//   humanImg = loadImage("../asset/hand.png");
+//   forrestSound = loadSound("../asset/forrestsound.wav");
 // }
 
 
@@ -29,6 +30,7 @@ function setup() {
     rain[i] = new Rain(random(width), random(height));
   }
 }
+
 
 function draw() {
   background(0, 0, 51, 90);
@@ -176,6 +178,8 @@ class Butterfly {
     this.targetX = startX;
     this.targetY = startY;
     this.dia = 34;
+    this.angle = 0.5;
+    this.angleSpd = 0.05;
   }
 
   move() {
@@ -193,8 +197,15 @@ class Butterfly {
   }
 
   moveTowards(targetX, targetY) {
-    this.x = targetX;
-    this.y = targetY;
+    let distX = targetX - this.x;
+    let distY = targetY - this.y;
+
+  let distance = dist(this.x, this.y, targetX, targetY);
+
+  let speed = 3;
+
+  this.x += (distX / distance) * speed;
+  this.y += (distY / distance) * speed;
   }
   changeColor() {
     this.color = color(92, 0, 230);
@@ -224,35 +235,53 @@ class Butterfly {
   }
 
   display() {
+
     push();
     ellipseMode(RADIUS);
+    
     //noStroke();
     this.drawButterfly();
   }
   drawButterfly() {
+    
+    this.angle += this.angleSpd;
+     r = 250;
+    b = map(cos(this.angle), -1, 1, 0, 255);
+    g = map(sin(this.angle), -1, 1, 0, 200);
+
+    fill(r, g, b);
+    push();
+    stroke(0);
     //Wings
-    fill(255);
     ellipse(this.x - 17, this.y - 10, 18, 13.5);
     ellipse(this.x - 15, this.y + 10, 15, 10.5);
     ellipse(this.x + 17, this.y - 10, 18, 13.5);
     ellipse(this.x + 15, this.y + 10, 15, 10.5);
 
+    fill(255);
     // Inner circles
-    fill(mouseX, mouseY, 255);
+    //fill(mouseX, mouseY, 255);
     ellipse(this.x - 17, this.y - 10, 7.5, 5.4);
     ellipse(this.x - 15, this.y + 10, 6, 4.5);
     ellipse(this.x + 17, this.y - 10, 7.5, 5.4);
     ellipse(this.x + 15, this.y + 10, 6, 4.5);
 
-    //Inner inner circles
-    push();
-    noStroke();
-    fill(this.r, this.b, this.g);
-    ellipse(this.x - 17, this.y - 10, 6.5, 2);
-    ellipse(this.x - 15, this.y + 10, 5, 1.7);
-    ellipse(this.x + 17, this.y - 10, 6.5, 2);
-    ellipse(this.x + 15, this.y + 10, 5, 1.7);
+    r = 250;
+    b = map(cos(this.angle), -1, 1, 0, 255);
+    g = map(sin(this.angle), -1, 1, 0, 200);
+
+    //fill(r, g, b);
+    
     pop();
+    //Inner inner circles
+    // push();
+    // //noStroke();
+    // //fill(this.r, this.b, this.g);
+    // ellipse(this.x - 17, this.y - 10, 5.5, 2);
+    // ellipse(this.x - 15, this.y + 10, 4, 1.7);
+    // ellipse(this.x + 17, this.y - 10, 5.5, 2);
+    // ellipse(this.x + 15, this.y + 10, 4, 1.7);
+    // pop();
 
     // body of butterfly
     fill(0);
@@ -261,7 +290,6 @@ class Butterfly {
     ellipse(this.x, this.y + 4, 6, 12);
 
     // anntenae
-
     push();
     strokeWeight(2);
     stroke(0);

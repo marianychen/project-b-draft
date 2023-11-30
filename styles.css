@@ -103,19 +103,15 @@ body {
     right: 20px;
 }
 
-#p5container canvas{
-    border: solid white;
-    border-width: 10px;
-    display: block;
-    margin:auto;
+#p5container {
+    width: 100%;
+    text-align: center;
 }
 
-#p5container{
-    display: inline-block;
-    width: 100%; 
-    margin: auto;
-    text-align: center;
-    
+#p5container canvas {
+    border: 10px solid white;
+    display: block; 
+    margin: auto; 
 }
 
 #display{
