@@ -9,14 +9,17 @@ let rainBool = false;
 let human;
 let humanImg;
 let forrestSound;
+let treesImg;
 
-// function preload() {
-//   soundFormats('wav');
-//   rainSound = loadSound("../asset/lightrain.wav");
-//   flowerImg = loadImage("../asset/doodle.png");
-//   humanImg = loadImage("../asset/hand.png");
-//   forrestSound = loadSound("../asset/forrestsound.wav");
-// }
+
+function preload() {
+  //rainSound = loadSound("sounds/lightrain.wav");
+  //forrestSound = loadSound("sounds/forrestsound.wav");
+
+  treesImg = loadImage("images/trees.png");
+  flowerImg = loadImage("images/doodle.png");
+  humanImg = loadImage("images/hand.png");
+}
 
 
 function setup() {
@@ -33,23 +36,27 @@ function setup() {
 
 
 function draw() {
-  background(0, 0, 51, 90);
+  background(0, 0, 51, 60);
   //forrestSound.loop();
   drawStars(4);
 
   //moon
   fill(246, 241, 213);
-  ellipse(width - 100, 100, 50);
+  ellipse(width - 100, 100, 80);
 
+  //clouds
   drawClouds(frameCount, 0);
 
+  //tree 
+  imageMode(CENTER);
+  image(treesImg, 170, 430, 400,400);
+
   //flowers
-  // push();
-  // imageMode(CENTER);
-  // for (let i = 0; i < 1061; i += 100) {
-  //   image(flowerImg, i, 540, 210, 150);
-  // }
-  // pop();
+  push();
+  for (let i = 0; i < 1061; i +=70) {
+    image(flowerImg, i, 590, 100, 120);
+  }
+  pop();
 
   // update and display
   for (let i = 0; i < butterflies.length; i++) {
@@ -161,8 +168,8 @@ class Human {
   }
 
   display() {
-    // imageMode(CENTER);
-    // image(humanImg, this.x, this.y, 50, 50);
+    imageMode(CENTER);
+    image(humanImg, this.x, this.y, 50, 50);
   }
 }
 
