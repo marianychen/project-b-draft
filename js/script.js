@@ -21,11 +21,14 @@ function setup() {
   let canvas = createCanvas(1000, 600);
   canvas.parent('p5container');
   
-  human = new Butterfly(random(width), random(height));
-    
+  human = new Human(random(width), random(height));
   for (let i = 0; i < NUM_OF_BUTTERFLY; i++) {
     butterflies[i] = new Butterfly(random(width), random(height));
   }
+  for (let i = 0; i < NUM_OF_RAIN; i++) {
+    rain[i] = new Rain(random(width), random(height));
+  }
+
 }
 function draw() {
   background(0, 0, 51, 90);
@@ -40,21 +43,24 @@ function draw() {
     drawClouds(frameCount,0);
   
 
-  // update and display
-  for (let i = 0; i < butterflies.length; i++) {
-    let b = butterflies[i];
-    b.bounce();
+ // update and display
+ for (let i = 0; i < butterflies.length; i++) {
+  let b = butterflies[i];
+  b.bounce();
+  b.slowDown();
+  b.escapeFrom(human);
+  if (rainBool) {
+    b.moveTowards(width / 6, height - 50);
+  } else {
     b.move();
-    b.slowDown();
-    b.escapeFrom(human);
-    b.display();
   }
-  human.attractTo(mouseX, mouseY);
-  human.move();
-  human.bounce();
-  human.display();  
-  //human.changeColor(255,255,0);
-  //human.changeSize(35);
+  b.display();
+}
+
+human.move();
+human.bounce();
+human.display();
+human.collisionDetect(butterflies, butterflies);
 }
 
 function drawClouds(x, y){
