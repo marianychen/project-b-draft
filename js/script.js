@@ -11,16 +11,16 @@ let humanImg;
 let forrestSound;
 
 // function preload() {
-//   rainSound = loadSound("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/lightrain.wav");
-//   flowerImg = loadImage("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/doodle.png");
-//   humanImg = loadImage("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/hand.png");
-//   forrestSound = loadSound("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/forrestsound.wav");
+//   rainSound = loadSound("../project-b-draft/js/asset/lightrain.wav");
+//   flowerImg = loadImage("../project-b-draft/js/asset/doodle.png");
+//   humanImg = loadImage("../project-b-draft/js/asset/hand.png");
+//   forrestSound = loadSound("../project-b-draft/js/asset/forrestsound.wav");
 // }
+
 
 function setup() {
   let canvas = createCanvas(1000, 600);
-  canvas.parent('p5container');
-  
+
   human = new Human(random(width), random(height));
   for (let i = 0; i < NUM_OF_BUTTERFLY; i++) {
     butterflies[i] = new Butterfly(random(width), random(height));
@@ -28,64 +28,85 @@ function setup() {
   for (let i = 0; i < NUM_OF_RAIN; i++) {
     rain[i] = new Rain(random(width), random(height));
   }
-
 }
+
 function draw() {
   background(0, 0, 51, 90);
   //forrestSound.loop();
   drawStars(4);
-  
+
   //moon
   fill(246, 241, 213);
   ellipse(width - 100, 100, 50);
-  
-   
-    drawClouds(frameCount,0);
-  
 
- // update and display
- for (let i = 0; i < butterflies.length; i++) {
-  let b = butterflies[i];
-  b.bounce();
-  b.slowDown();
-  b.escapeFrom(human);
-  if (rainBool) {
-    b.moveTowards(width / 6, height - 50);
-  } else {
-    b.move();
+  drawClouds(frameCount, 0);
+
+  //flowers
+  // push();
+  // imageMode(CENTER);
+  // for (let i = 0; i < 1061; i += 100) {
+  //   image(flowerImg, i, 540, 210, 150);
+  // }
+  // pop();
+
+  // update and display
+  for (let i = 0; i < butterflies.length; i++) {
+    let b = butterflies[i];
+    b.bounce();
+    b.slowDown();
+    b.escapeFrom(human);
+    if (rainBool) {
+      b.moveTowards(width / 6, height - 50);
+    } else {
+      b.move();
+    }
+    b.display();
   }
-  b.display();
+  
+
+  if (keyIsPressed) {
+    if (key == "R" || key == "r") {
+      rainBool = true;
+  
+      // if (!rainSound.isPlaying()) {
+      //   rainSound.loop();
+      // }
+      for (let i = 0; i < rain.length; i++) {
+        rain[i].display();
+        rain[i].update();
+      }
+    }
+  } else {
+    rainBool = false;
+    // if (rainSound.isPlaying()) {
+    //   rainSound.stop();
+    // }
+  }
+
+  human.move();
+  human.bounce();
+  human.display();
+  human.collisionDetect(butterflies, butterflies);
 }
-
-human.move();
-human.bounce();
-human.display();
-human.collisionDetect(butterflies, butterflies);
-}
-
-function drawClouds(x, y){
-
+function drawClouds(x, y) {
   fill(177, 177, 205);
-  ellipse(x,120,y + 25,30);
-  ellipse(x + 50,y + 100,40,50);
-  ellipse(x + 100,y + 110,25,30);
-  ellipse(x + 135,y + 115,25,25);
-  
-  ellipse(x + 250,y + 120,25,35);
-  ellipse(x + 300,y + 100,30,30);
-  ellipse(x + 300,y + 130,30,30);
-  ellipse(x + 345,y + 115,30,40);
-  ellipse(x + 390,y + 120,25,30);
-  
-  ellipse(x + 550,y + 120,25,35);
-  ellipse(x + 600,y + 100,30,30);
-  ellipse(x + 600,y + 130,30,30);
-  ellipse(x + 650,y + 115,30,40);
-  ellipse(x + 390,y + 120,25,30);
-  
-  
-}
+  ellipse(x, 120, y + 25, 30);
+  ellipse(x + 50, y + 100, 40, 50);
+  ellipse(x + 100, y + 110, 25, 30);
+  ellipse(x + 135, y + 115, 25, 25);
 
+  ellipse(x + 250, y + 120, 25, 35);
+  ellipse(x + 300, y + 100, 30, 30);
+  ellipse(x + 300, y + 130, 30, 30);
+  ellipse(x + 345, y + 115, 30, 40);
+  ellipse(x + 390, y + 120, 25, 30);
+
+  ellipse(x + 550, y + 120, 25, 35);
+  ellipse(x + 600, y + 100, 30, 30);
+  ellipse(x + 600, y + 130, 30, 30);
+  ellipse(x + 650, y + 115, 30, 40);
+  ellipse(x + 390, y + 120, 25, 30);
+}
 function drawStars(numStars) {
   fill(255);
   noStroke();
@@ -95,7 +116,6 @@ function drawStars(numStars) {
     ellipse(x, y, 2, 2);
   }
 }
-
 function drawMoon(x, y, radius) {
   fill(255);
   noStroke();
@@ -130,19 +150,20 @@ class Human {
     for (let i = 0; i < allObjects.length; i++) {
       let p = allObjects[i];
       let d = dist(this.x, this.y, p.x, p.y);
+
       if (d < this.dia / 2 + p.dia / 2) {
         console.log("hello");
-          allObjects.splice(i,1);
-        
+        allObjects.splice(i, 1);
       }
     }
   }
 
   display() {
-    imageMode(CENTER);
-    image(humanImg, this.x, this.y, 50, 50);
+    // imageMode(CENTER);
+    // image(humanImg, this.x, this.y, 50, 50);
   }
 }
+
 class Butterfly {
   // constructor function
   constructor(startX, startY) {
@@ -180,7 +201,6 @@ class Butterfly {
   }
 
   bounce() {
-    
     if (this.x > width || this.x < 0) {
       this.xSpd = -this.xSpd;
       this.xAccel = -this.xAccel;
@@ -202,8 +222,7 @@ class Butterfly {
       this.ySpd += accelY;
     }
   }
-  
-  
+
   display() {
     push();
     ellipseMode(RADIUS);
