@@ -10,12 +10,12 @@ let human;
 let humanImg;
 let forrestSound;
 
-function preload() {
-  rainSound = loadSound("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/lightrain.wav");
-  flowerImg = loadImage("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/doodle.png");
-  humanImg = loadImage("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/hand.png");
-  forrestSound = loadSound("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/forrestsound.wav");
-}
+// function preload() {
+//   rainSound = loadSound("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/lightrain.wav");
+//   flowerImg = loadImage("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/doodle.png");
+//   humanImg = loadImage("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/hand.png");
+//   forrestSound = loadSound("/Users/marianchen/Desktop/snr yr fall 2023/project-b-draft/assets/forrestsound.wav");
+// }
 
 function setup() {
   let canvas = createCanvas(1000, 600);
