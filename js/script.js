@@ -1,20 +1,20 @@
 let NUM_OF_BUTTERFLY = 20;
 let butterflies = [];
 let r, g, b;
-let rainSound;
 let flowerImg;
 let rain = [];
 let NUM_OF_RAIN = 100;
 let rainBool = false;
 let human;
 let humanImg;
+let rainSound;
 let forrestSound;
 let treesImg;
 
 
 function preload() {
-  //rainSound = loadSound("sounds/lightrain.wav");
-  //forrestSound = loadSound("sounds/forrestsound.wav");
+  rainSound = loadSound("sounds/lightrain.mp3");
+  forrestSound = loadSound("sounds/forrestsound.mp3");
 
   treesImg = loadImage("images/trees.png");
   flowerImg = loadImage("images/doodle.png");
@@ -77,9 +77,9 @@ function draw() {
     if (key == "R" || key == "r") {
       rainBool = true;
   
-      // if (!rainSound.isPlaying()) {
-      //   rainSound.loop();
-      // }
+      if (!rainSound.isPlaying()) {
+        rainSound.loop();
+      }
       for (let i = 0; i < rain.length; i++) {
         rain[i].display();
         rain[i].update();
@@ -87,9 +87,9 @@ function draw() {
     }
   } else {
     rainBool = false;
-    // if (rainSound.isPlaying()) {
-    //   rainSound.stop();
-    // }
+    if (rainSound.isPlaying()) {
+      rainSound.stop();
+    }
   }
 
   human.move();
