@@ -1,4 +1,4 @@
-let NUM_OF_BUTTERFLY = 20;
+let NUM_OF_BUTTERFLY = 10;
 let butterflies = [];
 let r, g, b;
 let flowerImg;
@@ -10,11 +10,15 @@ let humanImg;
 let rainSound;
 let forrestSound;
 let treesImg;
+let deathSound;
+let reviveSound;
 
 
 function preload() {
   rainSound = loadSound("sounds/lightrain.mp3");
   forrestSound = loadSound("sounds/forrestsound.mp3");
+  deathSound = loadSound("sounds/death.mp3");
+  reviveSound = loadSound("sounds/revive.mp3");
 
   treesImg = loadImage("images/trees.png");
   flowerImg = loadImage("images/doodle.png");
@@ -95,7 +99,8 @@ function draw() {
   human.move();
   human.bounce();
   human.display();
-  human.collisionDetect(butterflies, butterflies);
+  human.collisionDetect(butterflies,butterflies);
+  human.generateButterflies();
 }
 function drawClouds(x, y) {
   fill(177, 177, 205);
@@ -163,15 +168,30 @@ class Human {
       if (d < this.dia / 2 + p.dia / 2) {
         console.log("hello");
         allObjects.splice(i, 1);
+        deathSound.play();
       }
-    }
-  }
+      }
+
+      }
+      generateButterflies() {
+        if (mouseX < 0 || mouseX > 1000 || mouseY < 0 || mouseY > 600) {
+          if (keyIsPressed && keyCode === 32) {
+      
+            let newButterfly = new Butterfly(random(width), random(height));
+            butterflies.push(newButterfly);
+            reviveSound.play();
+          }
+        }
+      }
+    
+  
 
   display() {
     imageMode(CENTER);
     image(humanImg, this.x, this.y, 50, 50);
   }
 }
+
 
 class Butterfly {
   // constructor function
@@ -234,8 +254,8 @@ class Butterfly {
     let d = dist(this.x, this.y, other.x, other.y);
 
     if (d < 100) {
-      let accelX = (other.x - this.x) * 0.05 * -1;
-      let accelY = (other.y - this.y) * 0.05 * -1;
+      let accelX = (other.x - this.x) * 0.02 * -1;
+      let accelY = (other.y - this.y) * 0.02 * -1;
       this.xSpd += accelX;
       this.ySpd += accelY;
     }
