@@ -12,6 +12,8 @@ let forrestSound;
 let treesImg;
 let deathSound;
 let reviveSound;
+let cloudX = 0
+let cloudSpace = 700;
 
 
 function preload() {
@@ -41,8 +43,7 @@ function setup() {
 
 function draw() {
   background(0, 0, 51, 60);
-  //forrestSound.loop();
-  drawStars(4);
+  //forrestsound.loop();
 
   //moon
   fill(246, 241, 213);
@@ -51,16 +52,43 @@ function draw() {
   //clouds
   drawClouds(frameCount, 0);
 
+//end game - tree
+if (butterflies.length === 0) {
+
+  textSize(30);
+  textAlign(CENTER);
+  textFont("Arial");
+  text("YOU HAVE KILLED", width / 2, height / 2 - 100);
+  text("ALL THE BUTTERFLIES.", width / 2, height / 2 - 50);
+  for (let i = 0; i < rain.length; i++) {
+    rain[i].display();
+    rain[i].update();
+  }
+
+  push();
+  imageMode(CENTER);
+  rotate(PI/4);
+  image(treesImg, 600, 100, 400,420);
+  pop();
+  for (let i = 20; i < 1061; i +=210) {
+    image(flowerImg, i, 590, 100, 120);
+  }
+  background(0, 0, 51, 60); 
+
+} else {
+  //background(0, 0, 51, 60); 
   //tree 
+  drawStars(4);
   imageMode(CENTER);
   image(treesImg, 170, 430, 400,400);
-
   //flowers
-  push();
+  
   for (let i = 0; i < 1061; i +=70) {
     image(flowerImg, i, 590, 100, 120);
   }
-  pop();
+
+
+}
 
   // update and display
   for (let i = 0; i < butterflies.length; i++) {
@@ -94,6 +122,8 @@ function draw() {
     if (rainSound.isPlaying()) {
       rainSound.stop();
     }
+
+  
   }
 
   human.move();
@@ -102,24 +132,34 @@ function draw() {
   human.collisionDetect(butterflies,butterflies);
   human.generateButterflies();
 }
-function drawClouds(x, y) {
+function drawClouds(x) {
   fill(177, 177, 205);
-  ellipse(x, 120, y + 25, 30);
-  ellipse(x + 50, y + 100, 40, 50);
-  ellipse(x + 100, y + 110, 25, 30);
-  ellipse(x + 135, y + 115, 25, 25);
+  
+  cloudX += 1; 
+  
+  if (cloudX > width) {
+    cloudX = -cloudSpace; 
+  }
 
-  ellipse(x + 250, y + 120, 25, 35);
-  ellipse(x + 300, y + 100, 30, 30);
-  ellipse(x + 300, y + 130, 30, 30);
-  ellipse(x + 345, y + 115, 30, 40);
-  ellipse(x + 390, y + 120, 25, 30);
+  ellipse(cloudX - 100, 120, 25, 30);
+  ellipse(cloudX + 50 - 100, 100, 40, 50);
+  ellipse(cloudX, 110, 25, 30);
+  ellipse(cloudX + 135 - 100, 115, 25, 25);
 
-  ellipse(x + 550, y + 120, 25, 35);
-  ellipse(x + 600, y + 100, 30, 30);
-  ellipse(x + 600, y + 130, 30, 30);
-  ellipse(x + 650, y + 115, 30, 40);
-  ellipse(x + 390, y + 120, 25, 30);
+  ellipse(cloudX + 250,120, 25, 35);
+  ellipse(cloudX + 300, 100, 30, 30);
+  ellipse(cloudX + 300, 130, 30, 30);
+  ellipse(cloudX + 345, 115, 30, 40);
+  ellipse(cloudX + 390, 120, 25, 30);
+
+  ellipse(cloudX + 550, 120, 25, 35);
+  ellipse(cloudX + 600, 100, 30, 30);
+  ellipse(cloudX + 600, 130, 30, 30);
+  ellipse(cloudX + 650, 115, 30, 40);
+  ellipse(cloudX + 390, 120, 25, 30);
+
+
+
 }
 function drawStars(numStars) {
   fill(255);
@@ -183,6 +223,7 @@ class Human {
           }
         }
       }
+
     
   
 
