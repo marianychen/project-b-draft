@@ -6,74 +6,73 @@
         <script src ="js/script.js" ></script>
         <script src ="js/lib/p5.js" ></script>
         <script src="js/lib/p5.sound.js"></script>
-        <style>
-            audio {
-                display: none;
-            }
-        </style>
+
     </head>
     <body>
         <div id="title" >
             <h1>CREATIVE CODING LAB</h1>
             <div id="links" >
                 <a href="https://www.teamlab.art/ew/butterflies_ephemerallife_people_shanghai/borderless-shanghai/?autoplay=true">TEAMLABS</a>
-                <a href="../my_web/index.html">INTERNAL</a>
+                <a href="butterfly.html">INTERNAL</a>
                 <a href="#mission">JOURNEY</a>
     
             </div>
         </div>
-        <audio loop autoplay>
-            <source src="sounds/forrestsound.mp3" type="audio/mp3">
-            Your browser does not support the audio tag.
-        </audio>
         <div id="banner" >
             <img id="teamlab_pic" src="images/butterfly.jpeg" alt="teamlab ">
             
         </div>
         <div id="mission">
-            <h1>WHISPERS OF LIFE AND DEATH: <br>THE DANCE OF BUTTERFLIES AND HUMANS</h1>
-            <p> </p>
+            <h1>WHISPERS OF LIFE AND DEATH: <br> <br> THE DANCE OF BUTTERFLIES AND HUMANS</h1>
+            <br> <br> 
             <p>Inspired by teamLabs "Flutter of Butterflies Beyond Borders" exhibition, Embark on a journey and explore butterflies in their natural habitat.</p>
              <p>Undisturbed by humans, they freely flow. When it rains, they flock towards shelter.</p>
              <p>When touched by humans, they die.</p>
         </div>
 
-            <div id="boxes-container">
-                <div class="box">
-                  <h1>PHASE 1</h1>
-                  <p>In their natural habitat, butterflies engage in peaceful interactions, contributing to the ecosystem's delicate balance. Their graceful movements play a crucial role in pollination and the overall health of the environment.</p>
-                  <p></p>
-                  <p></p>
-                  <p>To produce more butterflies, remove humans from the environment and press the SPACE BAR</p>
-                </div>
+              <style>
+                .curved-square {
+                    display: flex;
+                    justify-content: center;
+                    background-color:rgb(95, 57, 209);
+                    border-color: aliceblue;
+                    border-width: 20px;
+                    color: white;
+                    padding: 50px;
+                    text-align: center;
+                    text-decoration: none;
+                    font-size: 20px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    cursor: pointer;
+                    border-radius: 15px; 
+                    margin-top: 50px;
+                    margin-bottom: 50px;
+                    font-family: 'Arial', sans-serif;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 50px;
+                    transition: background-color 0.3s;
+                    width: 40%;
+                    /* height: 100px; */
+                }
         
-                <div class="box">
-                  <h1>PHASE 2</h1>
-                  <p>During rainfall, butterflies exhibit adaptive behavior by seeking shelter near plants. This behavior is driven by their instinct to protect themselves from the elements, demonstrating their ability to respond to environmental changes and maintain resilience in adverse conditions.</p>
-                  <p></p>
-                  <p></p>
-                  <p> Press "R" or "r" to trigger the rain </p>
-                </div>
-            
-                <div class="box">
-                  <h1>PHASE 3</h1>
-                  <p>While butterflies may exhibit a degree of attraction to humans due to various factors, they simultaneously harbor a fear rooted in self-preservation. Their delicate nature makes them vulnerable to the touch of humans, emphasizing the intricacies of coexistence and the potential impact of human interaction on these fragile creatures.
-                  </p>
-                  <p></p>
-                  <p> When butterflies die by human touch, it damages the whole ecosystem. See what happens when they all die.</p>
-                </div>
-              </div>
+                .curved-square:hover {
+                    background-color: rgb(37, 14, 108); /* Change the color on hover if desired */
+                }
 
+            </style>
+              <a href="butterfly.html" class="curved-square">CLICK FOR INSTRUCTIONS</a>
+        
+        </div>
             <div id="p5intro">
                 <h1>P5.JS INTERACTION </h1>
-                <p>Interact with the code below and explore butterflies in various environments.</p>
+                <p>Interact with the code below and explore butterflies in their natural environment.</p>
             </div>
 
-        <div id="display">
-            <div id="p5container"> </div>
-        </div>
-   
-
+        
+        <div id="p5container"> </div>
+     
         <div id='button'>
             <a href="https://www.instagram.com/nyush_creativecodinglab/">
                 <img src="images/profile.png" alt="logobtn">

@@ -30,6 +30,7 @@ function preload() {
 
 function setup() {
   let canvas = createCanvas(1000, 600);
+  canvas.parent("p5container");
 
   human = new Human(random(width), random(height));
   for (let i = 0; i < NUM_OF_BUTTERFLY; i++) {
@@ -43,7 +44,9 @@ function setup() {
 
 function draw() {
   background(0, 0, 51, 60);
-  //forrestsound.loop();
+  if(!forrestSound.isPlaying()){
+    forrestSound.play();
+  }
 
   //moon
   fill(246, 241, 213);
