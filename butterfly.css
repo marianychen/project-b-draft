@@ -23,6 +23,7 @@ body {
 video {
     width: 100%;
     height: auto;
+    object-fit: cover;
   }
 
 
@@ -74,12 +75,12 @@ video {
   font-family: Arial, sans-serif;
   font-size: 20px;
   line-height: 30px;
-  margin-top: 200px;
+  /* margin-top: 200px; */
   /* margin-bottom: 100px; */
   text-align: center;
   color: white;
-  padding-left: 500px; 
-  padding-right: 500px;
+  padding-left: 200px; 
+  padding-right: 200px;
   box-sizing: border-box;
 }
 
