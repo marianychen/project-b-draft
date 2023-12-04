@@ -44,9 +44,7 @@ function setup() {
 
 function draw() {
   background(0, 0, 51, 60);
-  if(!forrestSound.isPlaying()){
-    forrestSound.play();
-  }
+  
 
   //moon
   fill(246, 241, 213);
@@ -57,10 +55,13 @@ function draw() {
 
 //end game - tree
 if (butterflies.length === 0) {
-
+  if(forrestSound.isPlaying()){
+    forrestSound.stop();
+  }
   textSize(30);
   textAlign(CENTER);
   textFont("Arial");
+  fill(255);
   text("YOU HAVE KILLED", width / 2, height / 2 - 100);
   text("ALL THE BUTTERFLIES.", width / 2, height / 2 - 50);
   for (let i = 0; i < rain.length; i++) {
@@ -71,14 +72,19 @@ if (butterflies.length === 0) {
   push();
   imageMode(CENTER);
   rotate(PI/4);
+  tint(76, 52, 26);
   image(treesImg, 600, 100, 400,420);
   pop();
   for (let i = 20; i < 1061; i +=210) {
+    tint(76, 52, 26);
     image(flowerImg, i, 590, 100, 120);
   }
   background(0, 0, 51, 60); 
 
 } else {
+  if(!forrestSound.isPlaying()){
+    forrestSound.play();
+  }
   //background(0, 0, 51, 60); 
   //tree 
   drawStars(4);

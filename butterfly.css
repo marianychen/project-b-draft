@@ -71,13 +71,16 @@ video {
 
 #mission{
     width: 100%;
-    font-family: Arial, sans-serif;
-    font-size: large;
-    line-height: 30px;
-    margin-top: 200px;
-    margin-bottom: 100px;
-    text-align: center;
-    color: white;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+  margin-top: 200px;
+  /* margin-bottom: 100px; */
+  text-align: center;
+  color: white;
+  padding-left: 500px; 
+  padding-right: 500px;
+  box-sizing: border-box;
 }
 
 
